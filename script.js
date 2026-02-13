@@ -26,6 +26,31 @@ const sampleEvents=
     }
 ]
 
+
+addSampleBtn.addEventListener("click", () => {
+
+    // Clear empty message
+    eventContainer.innerHTML = "";
+
+    sampleEvents.forEach(event => {
+
+        const eventCard = document.createElement("div");
+        eventCard.classList.add("event-card");
+
+        eventCard.innerHTML = `
+            <h3>${event.title}</h3>
+            <p><strong>Date:</strong> ${event.date}</p>
+            <p><strong>Category:</strong> ${event.category}</p>
+            <p>${event.description}</p>
+            <button class="delete-btn">Delete</button>
+        `;
+
+        eventContainer.appendChild(eventCard);
+    });
+
+});
+
+
 function createEventCard(eventData){
    const card=document.createElement("div");
 
@@ -84,7 +109,7 @@ clearAllBtn.addEventListener("click",()=>{
 })
 
 addSampleBtn.addEventListener("click",()=>{
-    sampleEvents.foreach(addEvent);
+    sampleEvents.forEach(addEvent);
 })
 
 eventContainer.addEventListener("click",(event)=>{
@@ -100,3 +125,4 @@ eventContainer.addEventListener("click",(event)=>{
     }
     
 })
+
