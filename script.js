@@ -1,4 +1,4 @@
-const eventForm =  document.getElementById("evenForm");
+const eventForm =  document.getElementById("eventForm");
 const eventTitle =  document.getElementById("eventTitle");
 const eventDate=  document.getElementById("eventDate");
 const eventCategory =  document.getElementById("eventCategory");
@@ -60,4 +60,43 @@ eventForm.addEventListener("submit",(event)=>{
 
     addEvent(eventData);
 
+})
+
+function createEventCard(eventData){
+   const card = document.createElement("div");
+   card.classList.add("event-card");  
+
+   card.innerHTML = `
+       <button class="delete-btn">X</button>
+       <h3>${eventData.title}</h3>
+       <div>${eventData.date}</div>
+       <span>${eventData.category}</span>
+       <p>${eventData.description}</p>
+   `;
+
+   return card;
+}
+
+
+clearAllBtn.addEventListener("click",()=>{
+    eventContainer.innerHTML = `
+    <div class = "empty-state">No events yet.Add your first event!</div>`
+})
+
+addSampleBtn.addEventListener("click",()=>{
+    sampleEvents.foreach(addEvent);
+})
+
+eventContainer.addEventListener("click",(event)=>{
+    const card =  event.target.closest(".event-card");
+    
+    if(event.target.classList.contains("delete-btn")){
+        card.remove()
+    }
+
+    if(!eventContainer.querySelector(".event-card")){
+        eventContainer.innerHTML = `
+    <div class = "empty-state">No events yet.Add your first event!</div>`
+    }
+    
 })
